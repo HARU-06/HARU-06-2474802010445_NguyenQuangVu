@@ -1,0 +1,24 @@
+name: GoRest Monitor
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check GET users response time
+        run: |
+          result=$(curl -s -o /dev/null -w "%{http_code} %{time_total}" https://gorest.co.in/public/v2/users)
+          status=$(echo "$result" | cut -d' ' -f1)
+          response_time=$(echo "$result" | cut -d' ' -f2)
+          response_ms=$(awk "BEGIN {print int($response_time * 1000)}")
+
+          echo "Status: $status"
+          echo "Response time: ${response_ms}ms"
+
+          test "$status" = "200"
+          test "$response_ms" -lt 800
