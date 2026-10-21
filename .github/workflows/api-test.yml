@@ -21,6 +21,6 @@ jobs:
       - name: Run Postman collection
         run: >-
           newman run 2474802010445_NguyenQuangVu_GoRest.postman_collection.json
-          -e 2474802010445_NguyenQuangVu_GoRest.postman_environment.json
+          -e 2474802010445_NguyenQuangVu_GoRest_Env.postman_environment.json
           -d users.csv
           --env-var "token=${{ secrets.GOREST_TOKEN }}"
