@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#a90818" />
+  <title>VLU Space — Cổng giảng viên</title>
+  <meta name="description" content="Prototype quản lý phòng và thiết bị dành cho giảng viên VLU." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="VLU Space">
+        <span class="brand-mark">VLU</span>
+        <span><strong>VLU SPACE</strong><small>Cổng giảng viên</small></span>
+      </a>
+      <nav class="nav" aria-label="Điều hướng chính">
+        <button class="nav-item active" data-view="dashboard"><span>⌂</span>Tổng quan</button>
+        <button class="nav-item" data-view="rooms"><span>▦</span>Tìm & đặt phòng</button>
+        <button class="nav-item" data-view="requests"><span>▤</span>Yêu cầu của tôi</button>
+        <button class="nav-item" data-view="equipment"><span>⌁</span>Mượn thiết bị</button>
+        <button class="nav-item" data-view="incidents"><span>!</span>Báo cáo sự cố</button>
+        <button class="nav-item" data-view="handover"><span>⇄</span>Nhường khung giờ <b class="nav-badge">2</b></button>
+      </nav>
+      <div class="sidebar-help">
+        <span>?</span>
+        <div><strong>Cần hỗ trợ?</strong><small>Liên hệ Phòng CSVC</small></div>
+      </div>
+      <div class="sidebar-user">
+        <span class="avatar">LH</span>
+        <div><strong>Lê Gia Hiếu</strong><small>Giảng viên · Khoa CNTT</small></div>
+        <button aria-label="Mở tùy chọn">⋮</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+        <div>
+          <p class="eyebrow" id="breadcrumb">VLU SPACE / TỔNG QUAN</p>
+          <h1 id="pageTitle">Chào buổi sáng, thầy Hiếu!</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" aria-label="Thông báo">♢<span>3</span></button>
+          <span class="top-avatar">LH</span>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboard">
+        <div class="welcome-card">
+          <div>
+            <span class="pill light">HỌC KỲ 1 · 2026–2027</span>
+            <h2>Quản lý phòng học<br />nhanh hơn, rõ ràng hơn.</h2>
+            <p>Tìm phòng trống, đăng ký thiết bị và theo dõi mọi yêu cầu tại một nơi.</p>
+            <button class="btn white" data-go="rooms">Tìm phòng trống <span>→</span></button>
+          </div>
+          <div class="welcome-visual" aria-hidden="true">
+            <div class="building"><span>VLU</span><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="calendar-card"><b>27</b><small>THÁNG 10</small></div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon red">▤</span><div><small>Yêu cầu chờ duyệt</small><strong>03</strong><em>+1 trong hôm nay</em></div></article>
+          <article class="stat-card"><span class="stat-icon green">✓</span><div><small>Lịch đã xác nhận</small><strong>08</strong><em>Trong tháng này</em></div></article>
+          <article class="stat-card"><span class="stat-icon amber">⌁</span><div><small>Thiết bị đang mượn</small><strong>04</strong><em>Trả gần nhất: 29/10</em></div></article>
+          <article class="stat-card"><span class="stat-icon blue">⇄</span><div><small>Chờ xác nhận nhường</small><strong>02</strong><em>Cần thầy phản hồi</em></div></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="panel">
+            <div class="panel-head"><div><h3>Lịch sắp tới</h3><p>Phòng đã được xác nhận</p></div><button class="text-btn" data-go="requests">Xem tất cả</button></div>
+            <div class="schedule-list">
+              <article class="schedule-item"><div class="date-box"><b>28</b><small>THG 10</small></div><div class="schedule-info"><span class="status green">Đã duyệt</span><h4>Phòng A.301 · Dạy bù Lập trình Web</h4><p>09:00 – 11:00 · 40 chỗ · Máy chiếu</p></div><button>›</button></article>
+              <article class="schedule-item"><div class="date-box"><b>30</b><small>THG 10</small></div><div class="schedule-info"><span class="status green">Đã duyệt</span><h4>Phòng C.402 · Họp nhóm nghiên cứu</h4><p>14:00 – 16:00 · 20 chỗ · Màn hình</p></div><button>›</button></article>
+              <article class="schedule-item"><div class="date-box"><b>03</b><small>THG 11</small></div><div class="schedule-info"><span class="status amber">Chờ duyệt</span><h4>Hội trường Trịnh Công Sơn</h4><p>08:00 – 11:30 · 300 chỗ · Âm thanh</p></div><button>›</button></article>
+            </div>
+          </section>
+          <section class="panel quick-panel">
+            <div class="panel-head"><div><h3>Thao tác nhanh</h3><p>Các tác vụ thường dùng</p></div></div>
+            <div class="quick-grid">
+              <button data-go="rooms"><span>▦</span><b>Đặt phòng</b><small>Tìm phòng phù hợp</small></button>
+              <button data-go="equipment"><span>⌁</span><b>Mượn thiết bị</b><small>Kiểm tra số lượng</small></button>
+              <button data-go="incidents"><span>!</span><b>Báo sự cố</b><small>Gửi ảnh và mô tả</small></button>
+              <button data-go="handover"><span>⇄</span><b>Nhường lịch</b><small>2 yêu cầu mới</small></button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="rooms">
+        <div class="section-heading"><div><h2>Tìm phòng trống</h2><p>Chỉ hiển thị phòng còn trống trong thời gian đã chọn.</p></div><span class="count-pill">6 phòng phù hợp</span></div>
+        <form class="filter-card" id="roomFilter">
+          <label>Ngày mượn<input type="date" value="2026-10-28" /></label>
+          <label>Giờ bắt đầu<input type="time" value="09:00" /></label>
+          <label>Giờ kết thúc<input type="time" value="11:00" /></label>
+          <label>Sức chứa tối thiểu<select><option>20 chỗ</option><option selected>40 chỗ</option><option>60 chỗ</option><option>100 chỗ</option></select></label>
+          <button class="btn primary" type="submit">Tìm phòng trống</button>
+        </form>
+        <div class="room-grid" id="roomGrid">
+          <article class="room-card"><div class="room-photo photo-a"><span>A.301</span></div><div class="room-body"><div><span class="status green">Còn trống</span><small>Phòng học · Tòa A · Tầng 3</small></div><h3>A.301 <small>40 chỗ</small></h3><p>Máy chiếu · Điều hòa · Bảng viết</p><button class="btn primary book-btn" data-room="A.301" data-capacity="40">Đặt phòng</button></div></article>
+          <article class="room-card"><div class="room-photo photo-b"><span>A.302</span></div><div class="room-body"><div><span class="status green">Còn trống</span><small>Phòng học · Tòa A · Tầng 3</small></div><h3>A.302 <small>50 chỗ</small></h3><p>Máy chiếu · Micro · Điều hòa</p><button class="btn primary book-btn" data-room="A.302" data-capacity="50">Đặt phòng</button></div></article>
+          <article class="room-card"><div class="room-photo photo-c"><span>C.402</span></div><div class="room-body"><div><span class="status green">Còn trống</span><small>Phòng họp · Tòa C · Tầng 4</small></div><h3>C.402 <small>24 chỗ</small></h3><p>Màn hình · Camera · Loa hội nghị</p><button class="btn primary book-btn" data-room="C.402" data-capacity="24">Đặt phòng</button></div></article>
+          <article class="room-card"><div class="room-photo photo-d"><span>B.204</span></div><div class="room-body"><div><span class="status green">Còn trống</span><small>Phòng học · Tòa B · Tầng 2</small></div><h3>B.204 <small>60 chỗ</small></h3><p>Máy chiếu · Micro · Bảng viết</p><button class="btn primary book-btn" data-room="B.204" data-capacity="60">Đặt phòng</button></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="requests">
+        <div class="section-heading"><div><h2>Yêu cầu của tôi</h2><p>Theo dõi tình trạng đặt phòng và tiến trình xử lý.</p></div><button class="btn primary" data-go="rooms">+ Tạo yêu cầu mới</button></div>
+        <div class="tabs"><button class="active">Tất cả <b>8</b></button><button>Chờ duyệt <b>3</b></button><button>Đã duyệt <b>4</b></button><button>Bị từ chối <b>1</b></button></div>
+        <div class="table-card">
+          <table><thead><tr><th>Mã đơn</th><th>Phòng & mục đích</th><th>Thời gian</th><th>Trạng thái</th><th></th></tr></thead><tbody>
+            <tr><td><b>#MT1031</b></td><td><strong>A.301</strong><small>Dạy bù Lập trình Web</small></td><td>28/10/2026<small>09:00 – 11:00</small></td><td><span class="status green">Đã duyệt</span></td><td><button class="row-action">Chi tiết</button></td></tr>
+            <tr><td><b>#MT1030</b></td><td><strong>Hội trường Trịnh Công Sơn</strong><small>Hội thảo chuyên đề</small></td><td>03/11/2026<small>08:00 – 11:30</small></td><td><span class="status amber">Chờ duyệt</span></td><td><button class="row-action">Chi tiết</button></td></tr>
+            <tr><td><b>#MT1028</b></td><td><strong>B.204</strong><small>Học bù Cấu trúc dữ liệu</small></td><td>25/10/2026<small>13:00 – 15:00</small></td><td><span class="status red">Bị từ chối</span></td><td><button class="row-action">Chi tiết</button></td></tr>
+          </tbody></table>
+        </div>
+      </section>
+
+      <section class="view" id="equipment">
+        <div class="section-heading"><div><h2>Mượn thiết bị</h2><p>Đăng ký thiết bị mượn thêm cho buổi dạy.</p></div><button class="btn primary" id="createEquipment">Tạo phiếu mượn</button></div>
+        <div class="equipment-grid">
+          <article><span class="equipment-icon">⌁</span><div><h3>Dây HDMI</h3><p>Kết nối máy chiếu</p><span class="stock">Còn 12</span></div><div class="stepper"><button>−</button><b>0</b><button>+</button></div></article>
+          <article><span class="equipment-icon">◉</span><div><h3>Micro không dây</h3><p>Phục vụ thuyết trình</p><span class="stock">Còn 6</span></div><div class="stepper"><button>−</button><b>0</b><button>+</button></div></article>
+          <article><span class="equipment-icon">▰</span><div><h3>Ổ điện kéo dài</h3><p>Ổ cắm 5 mét</p><span class="stock">Còn 9</span></div><div class="stepper"><button>−</button><b>0</b><button>+</button></div></article>
+          <article><span class="equipment-icon">⌘</span><div><h3>Hub chuyển đổi</h3><p>USB-C đa cổng</p><span class="stock low">Còn 3</span></div><div class="stepper"><button>−</button><b>0</b><button>+</button></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="incidents">
+        <div class="section-heading"><div><h2>Báo cáo sự cố</h2><p>Gửi thông tin để Phòng CSVC xử lý nhanh chóng.</p></div></div>
+        <form class="incident-form" id="incidentForm">
+          <div class="form-intro"><span>!</span><div><h3>Thông tin sự cố</h3><p>Vui lòng mô tả rõ ảnh hưởng đến buổi dạy.</p></div></div>
+          <div class="form-grid"><label>Loại sự cố<select required><option value="">Chọn loại sự cố</option><option>Thiết bị trong phòng</option><option>Thiết bị mượn thêm</option><option>Cơ sở vật chất</option></select></label><label>Phòng / vị trí<input placeholder="Ví dụ: A.301" required /></label></div>
+          <label>Thiết bị gặp sự cố<input placeholder="Ví dụ: Máy chiếu Epson EB-X41" /></label>
+          <label>Mô tả sự cố<textarea rows="5" placeholder="Mô tả tình trạng và mức độ ảnh hưởng..." required></textarea></label>
+          <label class="upload-box"><input type="file" accept="image/*" /><span>＋</span><b>Thêm ảnh minh họa</b><small>PNG, JPG · Tối đa 10 MB</small></label>
+          <div class="form-actions"><button type="reset" class="btn ghost">Nhập lại</button><button type="submit" class="btn primary">Gửi báo cáo</button></div>
+        </form>
+      </section>
+
+      <section class="view" id="handover">
+        <div class="section-heading"><div><h2>Xác nhận nhường khung giờ</h2><p>Kiểm tra yêu cầu đã trao đổi trước khi phản hồi.</p></div><span class="count-pill">2 yêu cầu mới</span></div>
+        <div class="handover-list">
+          <article class="handover-card" data-request="RQ-204"><div class="request-avatar">NV</div><div class="handover-main"><span class="status amber">Chờ xác nhận</span><h3>Nguyễn Quang Vũ <small>· Giảng viên</small></h3><p>Xin mượn lại phòng để tổ chức lớp học bù môn Kiểm thử phần mềm.</p><div class="time-strip"><span><small>Phòng</small><b>A.301</b></span><span><small>Ngày</small><b>28/10/2026</b></span><span><small>Thời gian</small><b>09:00 – 11:00</b></span></div></div><div class="handover-actions"><button class="btn ghost reject-btn">Từ chối</button><button class="btn primary accept-btn">Xác nhận nhường</button></div></article>
+          <article class="handover-card" data-request="RQ-205"><div class="request-avatar student">TA</div><div class="handover-main"><span class="status amber">Chờ xác nhận</span><h3>Trần Minh An <small>· Sinh viên</small></h3><p>Xin mượn lại phòng để sinh hoạt Câu lạc bộ Công nghệ.</p><div class="time-strip"><span><small>Phòng</small><b>C.402</b></span><span><small>Ngày</small><b>30/10/2026</b></span><span><small>Thời gian</small><b>14:00 – 16:00</b></span></div></div><div class="handover-actions"><button class="btn ghost reject-btn">Từ chối</button><button class="btn primary accept-btn">Xác nhận nhường</button></div></article>
+        </div>
+        <div class="notice"><b>Lưu ý</b><p>Chỉ xác nhận khi hai bên đã trao đổi và thống nhất ngoài hệ thống. Sau khi xác nhận, lịch sẽ được chuyển cho người xin mượn.</p></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="bookingModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+      <button class="modal-close" data-close>×</button>
+      <span class="modal-icon">▦</span><h2 id="bookingTitle">Đặt phòng <b id="modalRoom">A.301</b></h2><p>Điền thông tin để gửi yêu cầu đến bộ phận phụ trách.</p>
+      <form id="bookingForm"><div class="form-grid"><label>Loại phòng<select><option>Phòng học</option><option>Phòng họp</option><option>Hội trường</option></select></label><label>Phòng<input id="roomInput" value="A.301" readonly /></label></div><label>Mục đích sử dụng<textarea rows="3" placeholder="Ví dụ: Dạy bù Lập trình Web" required></textarea></label><div class="form-grid"><label>Ngày mượn<input type="date" value="2026-10-28" /></label><label>Thời gian<input value="09:00 – 11:00" readonly /></label></div><div class="modal-actions"><button type="button" class="btn ghost" data-close>Quay lại</button><button type="submit" class="btn primary">Gửi yêu cầu</button></div></form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="confirmModal" aria-hidden="true">
+    <div class="modal compact" role="dialog" aria-modal="true"><button class="modal-close" data-close>×</button><span class="modal-icon">⇄</span><h2>Xác nhận nhường lịch?</h2><p>Khung giờ sẽ được chuyển cho người xin mượn và không còn trong lịch của thầy.</p><div class="confirm-summary" id="confirmSummary"></div><div class="modal-actions"><button class="btn ghost" data-close>Quay lại</button><button class="btn primary" id="confirmHandover">Xác nhận nhường</button></div></div>
+  </div>
+
+  <div class="toast" id="toast"><span>✓</span><div><b>Thành công</b><small id="toastText">Yêu cầu đã được ghi nhận.</small></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
