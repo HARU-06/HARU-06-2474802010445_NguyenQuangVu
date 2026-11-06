@@ -62,11 +62,38 @@ document.getElementById('incidentForm').addEventListener('submit', e => {
 document.querySelectorAll('.stepper').forEach(stepper => {
   const value = stepper.querySelector('b');
   const [minus, plus] = stepper.querySelectorAll('button');
-  minus.addEventListener('click', () => value.textContent = Math.max(0, Number(value.textContent) - 1));
-  plus.addEventListener('click', () => value.textContent = Math.min(9, Number(value.textContent) + 1));
+  const stock = Number(stepper.dataset.stock);
+  const equipmentName = stepper.dataset.name;
+
+  const updateButtons = () => {
+    const quantity = Number(value.textContent);
+    minus.disabled = quantity === 0;
+    plus.disabled = quantity >= stock;
+  };
+
+  minus.addEventListener('click', () => {
+    value.textContent = Math.max(0, Number(value.textContent) - 1);
+    updateButtons();
+  });
+  plus.addEventListener('click', () => {
+    const current = Number(value.textContent);
+    if (current >= stock) {
+      showToast(`${equipmentName} chỉ còn ${stock} thiết bị.`);
+      return;
+    }
+    value.textContent = current + 1;
+    updateButtons();
+  });
+  updateButtons();
 });
 document.getElementById('createEquipment').addEventListener('click', () => {
-  const total = [...document.querySelectorAll('.stepper b')].reduce((s, el) => s + Number(el.textContent), 0);
+  const steppers = [...document.querySelectorAll('.stepper')];
+  const invalid = steppers.find(stepper => Number(stepper.querySelector('b').textContent) > Number(stepper.dataset.stock));
+  if (invalid) {
+    showToast(`${invalid.dataset.name} vượt quá số lượng còn lại.`);
+    return;
+  }
+  const total = steppers.reduce((sum, stepper) => sum + Number(stepper.querySelector('b').textContent), 0);
   showToast(total ? `Đã tạo phiếu mượn với ${total} thiết bị.` : 'Vui lòng chọn ít nhất một thiết bị.');
 });
 
