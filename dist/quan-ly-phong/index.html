@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#9d0716" />
+  <title>VLU Space — Quản lý phòng</title>
+  <meta name="description" content="Prototype quản lý phòng và cơ sở vật chất VLU." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="../"><span class="logo">VLU</span><span><b>VLU SPACE</b><small>Quản lý phòng</small></span></a>
+      <nav>
+        <button class="nav active" data-view="overview"><i>⌂</i>Tổng quan</button>
+        <button class="nav" data-view="rooms"><i>▦</i>Danh sách phòng</button>
+        <button class="nav" data-view="schedule"><i>▤</i>Lịch sử dụng</button>
+        <button class="nav" data-view="requests"><i>✓</i>Yêu cầu đặt phòng <em>4</em></button>
+        <button class="nav" data-view="handover"><i>⇄</i>Bàn giao & thu hồi <em>3</em></button>
+        <button class="nav" data-view="equipment"><i>⌁</i>Kho thiết bị</button>
+        <button class="nav" data-view="incidents"><i>!</i>Sự cố <em>2</em></button>
+      </nav>
+      <div class="side-info"><span>CS</span><div><b>Phòng CSVC</b><small>Nhân viên quản lý</small></div><button>⋮</button></div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <button class="menu" id="menu">☰</button>
+        <div><p id="crumb">VLU SPACE / TỔNG QUAN</p><h1 id="title">Tổng quan vận hành</h1></div>
+        <div class="top-actions"><label class="global-search">⌕<input placeholder="Tìm phòng, đơn, thiết bị..." /></label><button class="bell">♢<b>6</b></button><span class="avatar">CS</span></div>
+      </header>
+
+      <section class="view active" id="overview">
+        <div class="hero">
+          <div><span class="date">THỨ SÁU · 06/11/2026</span><h2>Chào buổi sáng,<br />Phòng Cơ sở vật chất.</h2><p>Hôm nay có <b>12 lịch sử dụng</b> và <b>3 lượt cần bàn giao</b>.</p></div>
+          <div class="hero-map"><div class="tower"><b>A</b><span></span><span></span><span></span></div><div class="tower short"><b>B</b><span></span><span></span></div><div class="tower medium"><b>C</b><span></span><span></span><span></span></div></div>
+        </div>
+        <div class="stats">
+          <article><span class="metric red">▦</span><div><small>Tổng số phòng</small><strong>48</strong><p>45 đang hoạt động</p></div></article>
+          <article><span class="metric green">✓</span><div><small>Đang sử dụng</small><strong>12</strong><p>25% công suất</p></div></article>
+          <article><span class="metric amber">▤</span><div><small>Chờ duyệt</small><strong>04</strong><p>Cần xử lý hôm nay</p></div></article>
+          <article><span class="metric blue">!</span><div><small>Sự cố đang mở</small><strong>02</strong><p>1 mức ưu tiên cao</p></div></article>
+        </div>
+        <div class="grid two">
+          <section class="panel"><div class="panel-head"><div><h3>Lịch sử dụng hôm nay</h3><p>06/11/2026 · 12 lịch</p></div><button class="link" data-go="schedule">Xem toàn bộ</button></div><div class="timeline">
+            <article><time>08:00</time><span class="line red"></span><div><span class="tag using">Đang sử dụng</span><h4>A.301 · Lớp Kiểm thử phần mềm</h4><p>GV Nguyễn Quang Vũ · 08:00–10:00</p></div><button class="mini" data-toast="Đã mở chi tiết lịch A.301">Chi tiết</button></article>
+            <article><time>10:30</time><span class="line amber"></span><div><span class="tag waiting">Chờ bàn giao</span><h4>C.402 · Họp Khoa Công nghệ</h4><p>GV Lê Gia Hiếu · 10:30–12:00</p></div><button class="mini" data-go="handover">Bàn giao</button></article>
+            <article><time>13:00</time><span class="line gray"></span><div><span class="tag upcoming">Sắp tới</span><h4>B.204 · Lớp học bù Cấu trúc dữ liệu</h4><p>GV Trần Minh Khoa · 13:00–15:00</p></div><button class="mini" data-toast="Đã mở chi tiết lịch B.204">Chi tiết</button></article>
+          </div></section>
+          <section class="panel"><div class="panel-head"><div><h3>Tình trạng phòng</h3><p>Cập nhật theo thời gian thực</p></div></div><div class="donut-row"><div class="donut"><span><b>48</b><small>phòng</small></span></div><div class="legend"><p><i class="dot green"></i>Trống <b>30</b></p><p><i class="dot red"></i>Đang dùng <b>12</b></p><p><i class="dot amber"></i>Bảo trì <b>3</b></p><p><i class="dot gray"></i>Đã khóa <b>3</b></p></div></div><button class="wide-btn" data-go="rooms">Quản lý danh sách phòng →</button></section>
+        </div>
+      </section>
+
+      <section class="view" id="rooms">
+        <div class="heading"><div><h2>Danh sách phòng</h2><p>Quản lý thông tin, thiết bị và trạng thái khai thác.</p></div><button class="btn primary" id="addRoom">+ Thêm phòng</button></div>
+        <div class="filters"><label class="search">⌕<input id="roomSearch" placeholder="Tìm theo tên phòng..." /></label><select id="buildingFilter"><option value="all">Tất cả tòa</option><option value="A">Tòa A</option><option value="B">Tòa B</option><option value="C">Tòa C</option></select><select id="statusFilter"><option value="all">Tất cả trạng thái</option><option value="Trống">Trống</option><option value="Đang sử dụng">Đang sử dụng</option><option value="Bảo trì">Bảo trì</option></select><span id="roomCount">6 phòng</span></div>
+        <div class="room-table table-wrap"><table><thead><tr><th>Phòng</th><th>Loại phòng</th><th>Sức chứa</th><th>Thiết bị</th><th>Trạng thái</th><th>Lịch tiếp theo</th><th></th></tr></thead><tbody id="roomRows">
+          <tr data-building="A" data-status="Trống"><td><b>A.301</b><small>Tòa A · Tầng 3</small></td><td>Phòng học</td><td>40 chỗ</td><td>Máy chiếu · Điều hòa</td><td><span class="tag free">Trống</span></td><td>13:00 · Hôm nay</td><td><button class="more">⋮</button></td></tr>
+          <tr data-building="A" data-status="Đang sử dụng"><td><b>A.302</b><small>Tòa A · Tầng 3</small></td><td>Phòng học</td><td>50 chỗ</td><td>Máy chiếu · Micro</td><td><span class="tag using">Đang sử dụng</span></td><td>Đến 11:00</td><td><button class="more">⋮</button></td></tr>
+          <tr data-building="B" data-status="Bảo trì"><td><b>B.204</b><small>Tòa B · Tầng 2</small></td><td>Phòng học</td><td>60 chỗ</td><td>Máy chiếu · Bảng viết</td><td><span class="tag maintenance">Bảo trì</span></td><td>—</td><td><button class="more">⋮</button></td></tr>
+          <tr data-building="C" data-status="Trống"><td><b>C.402</b><small>Tòa C · Tầng 4</small></td><td>Phòng họp</td><td>24 chỗ</td><td>Camera · Màn hình</td><td><span class="tag free">Trống</span></td><td>10:30 · Ngày mai</td><td><button class="more">⋮</button></td></tr>
+          <tr data-building="C" data-status="Đang sử dụng"><td><b>C.501</b><small>Tòa C · Tầng 5</small></td><td>Phòng máy</td><td>45 chỗ</td><td>45 máy tính · Máy chiếu</td><td><span class="tag using">Đang sử dụng</span></td><td>Đến 10:00</td><td><button class="more">⋮</button></td></tr>
+          <tr data-building="A" data-status="Trống"><td><b>Hội trường A</b><small>Tòa A · Tầng trệt</small></td><td>Hội trường</td><td>300 chỗ</td><td>Âm thanh · Sân khấu</td><td><span class="tag free">Trống</span></td><td>08:00 · 09/11</td><td><button class="more">⋮</button></td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="view" id="schedule">
+        <div class="heading"><div><h2>Lịch sử dụng phòng</h2><p>Theo dõi lịch theo ngày và phòng.</p></div><div class="date-controls"><button>‹</button><b>06/11/2026</b><button>›</button></div></div>
+        <div class="calendar panel"><div class="calendar-head"><span>Phòng</span><b>08:00</b><b>09:00</b><b>10:00</b><b>11:00</b><b>12:00</b><b>13:00</b><b>14:00</b><b>15:00</b><b>16:00</b></div>
+          <div class="calendar-row"><strong>A.301</strong><button style="--start:1;--span:2" class="booking red">Kiểm thử phần mềm<small>08:00–10:00</small></button><button style="--start:6;--span:2" class="booking blue">Học bù CTDL<small>13:00–15:00</small></button></div>
+          <div class="calendar-row"><strong>A.302</strong><button style="--start:2;--span:3" class="booking green">Lập trình Web<small>09:00–12:00</small></button></div>
+          <div class="calendar-row"><strong>B.204</strong><span class="maintenance-slot">Bảo trì cả ngày</span></div>
+          <div class="calendar-row"><strong>C.402</strong><button style="--start:4;--span:2" class="booking amber">Họp khoa<small>11:00–13:00</small></button></div>
+        </div>
+      </section>
+
+      <section class="view" id="requests">
+        <div class="heading"><div><h2>Yêu cầu đặt phòng</h2><p>Kiểm tra thông tin trước khi duyệt hoặc từ chối.</p></div><span class="count">4 yêu cầu chờ duyệt</span></div>
+        <div class="tabs"><button class="active">Chờ duyệt <b>4</b></button><button>Đã duyệt</button><button>Từ chối</button></div>
+        <div class="request-list">
+          <article class="request-card"><span class="initial">NV</span><div class="request-main"><span class="tag waiting">Chờ duyệt</span><h3>Nguyễn Quang Vũ <small>· Giảng viên</small></h3><p>Dạy bù môn Kiểm thử phần mềm</p><div class="details"><span><small>Phòng</small><b>A.301</b></span><span><small>Ngày</small><b>09/11/2026</b></span><span><small>Thời gian</small><b>13:00–15:00</b></span><span><small>Sức chứa</small><b>40 chỗ</b></span></div></div><div class="actions"><button class="btn ghost reject">Từ chối</button><button class="btn primary approve">Duyệt yêu cầu</button></div></article>
+          <article class="request-card"><span class="initial blue">LH</span><div class="request-main"><span class="tag waiting">Chờ duyệt</span><h3>Lê Gia Hiếu <small>· Giảng viên</small></h3><p>Họp nhóm nghiên cứu Khoa CNTT</p><div class="details"><span><small>Phòng</small><b>C.402</b></span><span><small>Ngày</small><b>10/11/2026</b></span><span><small>Thời gian</small><b>14:00–16:00</b></span><span><small>Sức chứa</small><b>20 chỗ</b></span></div></div><div class="actions"><button class="btn ghost reject">Từ chối</button><button class="btn primary approve">Duyệt yêu cầu</button></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="handover">
+        <div class="heading"><div><h2>Bàn giao & thu hồi phòng</h2><p>Xác nhận người nhận, thời gian và tình trạng phòng.</p></div><span class="count">3 lượt hôm nay</span></div>
+        <div class="handover-grid">
+          <article><div class="handover-top"><span class="tag waiting">Chờ bàn giao</span><b>#MT1042</b></div><h3>C.402 · Họp Khoa Công nghệ</h3><p>Lê Gia Hiếu · 10:30–12:00</p><div class="checklist"><label><input type="checkbox" /> Đã kiểm tra thiết bị</label><label><input type="checkbox" /> Phòng sạch và sẵn sàng</label></div><button class="btn primary handover-btn">Xác nhận bàn giao</button></article>
+          <article><div class="handover-top"><span class="tag using">Đang sử dụng</span><b>#MT1040</b></div><h3>A.301 · Kiểm thử phần mềm</h3><p>Nguyễn Quang Vũ · 08:00–10:00</p><div class="checklist"><label><input type="checkbox" /> Đã trả chìa khóa / thẻ</label><label><input type="checkbox" /> Không phát sinh hư hỏng</label></div><button class="btn dark return-btn">Xác nhận thu hồi</button></article>
+          <article><div class="handover-top"><span class="tag upcoming">Sắp tới</span><b>#MT1045</b></div><h3>B.204 · Học bù CTDL</h3><p>Trần Minh Khoa · 13:00–15:00</p><div class="checklist"><label><input type="checkbox" /> Đã kiểm tra thiết bị</label><label><input type="checkbox" /> Phòng sạch và sẵn sàng</label></div><button class="btn primary handover-btn">Xác nhận bàn giao</button></article>
+        </div>
+      </section>
+
+      <section class="view" id="equipment">
+        <div class="heading"><div><h2>Kho thiết bị</h2><p>Theo dõi số lượng khả dụng và thiết bị đang mượn.</p></div><button class="btn primary" id="adjustStock">Điều chỉnh tồn kho</button></div>
+        <div class="inventory-grid">
+          <article><span class="equip-icon">⌁</span><div><h3>Dây HDMI</h3><p>Mã TB-HDMI</p></div><div class="inventory"><b>12</b><small>khả dụng / 18</small><meter min="0" max="18" value="12"></meter></div></article>
+          <article><span class="equip-icon">◉</span><div><h3>Micro không dây</h3><p>Mã TB-MIC</p></div><div class="inventory"><b>6</b><small>khả dụng / 10</small><meter min="0" max="10" value="6"></meter></div></article>
+          <article><span class="equip-icon">⌘</span><div><h3>Hub chuyển đổi</h3><p>Mã TB-HUB</p></div><div class="inventory low"><b>3</b><small>khả dụng / 12</small><meter min="0" max="12" value="3"></meter></div></article>
+          <article><span class="equip-icon">▰</span><div><h3>Ổ điện kéo dài</h3><p>Mã TB-POWER</p></div><div class="inventory"><b>9</b><small>khả dụng / 15</small><meter min="0" max="15" value="9"></meter></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="incidents">
+        <div class="heading"><div><h2>Quản lý sự cố</h2><p>Phân loại, giao xử lý và theo dõi kết quả.</p></div><span class="count danger">2 sự cố đang mở</span></div>
+        <div class="incident-list">
+          <article data-status="open"><span class="priority high">Ưu tiên cao</span><div><h3>#SC-028 · Máy chiếu A.301 không nhận tín hiệu</h3><p>Báo bởi GV Nguyễn Quang Vũ · 08:14 hôm nay</p><div class="incident-meta"><span>Phòng A.301</span><span>Thiết bị trong phòng</span><span class="tag waiting">Chờ xử lý</span></div></div><button class="btn primary assign">Giao kỹ thuật</button></article>
+          <article data-status="open"><span class="priority medium">Trung bình</span><div><h3>#SC-027 · Điều hòa B.204 phát tiếng ồn</h3><p>Báo bởi GV Trần Minh Khoa · 16:30 hôm qua</p><div class="incident-meta"><span>Phòng B.204</span><span>Cơ sở vật chất</span><span class="tag using">Đang xử lý</span></div></div><button class="btn ghost assign">Cập nhật</button></article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-layer" id="roomModal" aria-hidden="true"><div class="modal"><button class="close">×</button><span class="modal-icon">▦</span><h2>Thêm phòng mới</h2><p>Nhập thông tin cơ bản để đưa phòng vào danh sách.</p><form id="roomForm"><div class="form-grid"><label>Tên phòng<input required placeholder="Ví dụ: A.305" /></label><label>Tòa nhà<select><option>Tòa A</option><option>Tòa B</option><option>Tòa C</option></select></label></div><div class="form-grid"><label>Loại phòng<select><option>Phòng học</option><option>Phòng họp</option><option>Phòng máy</option><option>Hội trường</option></select></label><label>Sức chứa<input required type="number" min="1" placeholder="40" /></label></div><label>Thiết bị có sẵn<textarea rows="3" placeholder="Máy chiếu, điều hòa, bảng viết..."></textarea></label><div class="modal-actions"><button type="button" class="btn ghost close-action">Hủy</button><button class="btn primary" type="submit">Lưu phòng</button></div></form></div></div>
+  <div class="toast" id="toast"><span>✓</span><div><b>Đã cập nhật</b><small id="toastText"></small></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
